@@ -1,11 +1,18 @@
 import { Component } from "@angular/core";
+import { CoursesService } from "./courses.service";
 
 @Component({
     selector: "courses",
-    templateUrl: './courses.component.html'
+    templateUrl: './courses.component.html',
+    providers: [CoursesService]
 })
 
 export class CoursesComponent {
     title = "List of Courses";
-    courses = ["course1", "course2", "course3"]
+    courses;
+
+    constructor() {
+        let services = new CoursesService;
+        this.courses = services.getCourses()
+    }
 }
